@@ -29,6 +29,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    vertical-align: bottom;
 }
 .todoItem__content {
     display: inline-block;
