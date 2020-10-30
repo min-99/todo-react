@@ -3,7 +3,10 @@ import '../css/AllTask.css';
 import TodoTemplate from '../component/TodoTemplate';
 import TodoItemFrom from '../component/TodoItemFrom';
 import TodoReducer from '../reducer/TodoReducer';
-import { useReducer } from 'react';
+
+import update from 'immutability-helper';
+
+import { useReducer, useCallback } from 'react';
 
 export default function AllTask(){
     const [state, dispatch] = useReducer(TodoReducer, { todoItemTitle : '',
@@ -14,6 +17,17 @@ export default function AllTask(){
             {id : 4, title : "운동하기", isCheck : false}
         ]
     });
+
+    const moveTodo = (dragIndex, hoverIndex) => {
+        const dragTodo = state.todoList[dragIndex];
+
+        dispatch({ type : 'UPDATE_TODO_ITEM', todoList : update(state.todoList, {
+            $splice: [
+                [dragIndex, 1],
+                [hoverIndex, 0, dragTodo],
+            ],
+        })});
+    };
 
     return (
         <div className="todoApp__div">
@@ -31,6 +45,7 @@ export default function AllTask(){
                 <TodoTemplate title="Today" todoList={state.todoList} 
                 deleteTodoItem = {(id) => dispatch({type : 'DELETE_TODO_ITEM', id : id})}
                 checkUpdateTodoItem = {(id, isCheck) => dispatch({type : 'UPDATE_TODO_ITEM_CHECK', id : id, isCheck : isCheck})}
+                moveTodo = {(dragIndex, hoverIndex) => moveTodo(dragIndex, hoverIndex)}
                 />
             </div>
         </div>

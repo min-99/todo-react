@@ -1,4 +1,6 @@
 import '../css/TodoTemplate.css';
+import { useState, useCallback } from 'react';
+
 
 import TodoItem from './TodoItem';
 import PropTypes from 'prop-types';
@@ -12,22 +14,21 @@ TodoTemplate.propTypes = {
     // })
 }
 
-export default function TodoTemplate({title, todoList, deleteTodoItem, checkUpdateTodoItem}){
+export default function TodoTemplate({title, todoList, deleteTodoItem, checkUpdateTodoItem, moveTodo}){
+ 
+    const renderTodoItem = (todoList, index) => {
+        return (<TodoItem key={todoList.id} index={index} id={todoList.id} title={todoList.title} isCheck={todoList.isCheck} deleteTodoItem={deleteTodoItem} checkUpdateTodoItem={checkUpdateTodoItem} moveTodo={moveTodo}/>);
+    };
+
     return (
         <div className="todoTemplate">
             <div className="todoTemplate__title">
-                <p className="title">{title}<p className="title_count">{todoList.length}개중 {(todoList.filter(x => x.isCheck === true)).length}개 완료</p></p>
+                <p className="title">{title}</p>
                 
             </div>
             <div className="todoTemplate__content">
-                {todoList && todoList.map(x =><TodoItem 
-                key={x.id} 
-                id={x.id} 
-                title={x.title} 
-                isCheck={x.isCheck} 
-                deleteTodoItem={deleteTodoItem}
-                checkUpdateTodoItem={checkUpdateTodoItem}
-                />)}
+                {todoList && 
+                todoList.map((todo, i) => renderTodoItem(todo, i))}
             </div>
         </div>
     );

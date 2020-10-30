@@ -4,9 +4,11 @@ export default function TodoReducer(state, action) {
        case 'UPDATE_TODO_ITEM_TITLE':
            return { ...state , todoItemTitle: action.text };
        case 'INSERT_TODO_ITEM':
-           return { todoItemTitle : '', todoList : state.todoList.concat({ id : state.todoList[state.todoList.length-1].id+1,  title : action.title, isCheck : false}) };
+           return { todoItemTitle : '', todoList : state.todoList.concat({ id : (Math.max.apply(Math, state.todoList.map(function(x) { return x.id; })))+1,  title : action.title, isCheck : false}) };
        case 'DELETE_TODO_ITEM':
            return { ...state, todoList : state.todoList.filter(x => x.id !== action.id) };
+       case 'UPDATE_TODO_ITEM' :
+         return { ...state, todoList : action.todoList };
        case 'UPDATE_TODO_ITEM_CHECK':
            return { ...state, todoList : checkUpdateTodoItem(state.todoList, action.id, action.isCheck) };
        default:
