@@ -1,0 +1,48 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.todoTemplate__title .title {
+    font-size: 19px;
+    font-weight: 600;
+    margin: 10px;
+    padding: 10px 0px;
+}
+
+.todoTemplate__title .title_count {
+    display: inline-block;
+    font-weight: 300;
+    color: black;
+    font-size: 14px;
+    margin-left: 5px;
+    float: right;
+}
+
+.todoItem {
+    line-height: 27px;
+}
+.todoItem p {
+    display: inline-block;
+    padding: 2px 17px;
+    max-width: 434px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.todoItem__content {
+    display: inline-block;
+}
+.todoItem__content p.complete {
+    text-decoration-line: line-through;
+    color : #999;
+}
+
+.todoItem__deletebtn {
+    display: inline-block;
+}
+
+.todoItem__deletebtn img {
+    width: 17px;
+    height: 17px;
+}

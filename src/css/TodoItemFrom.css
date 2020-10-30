@@ -1,0 +1,33 @@
+.todoItemFrom {
+    text-align: center;
+}
+
+.todoItemFrom input {
+    width: 70%;
+    height: auto;
+    line-height: normal;
+    padding: .8em .5em;
+    font-family: inherit;
+    border-radius: 0;
+    outline-style: none;
+    border: none;
+    border-bottom: 1px solid #999;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.todoItemFrom button {
+    width: 78px;
+    background-color: black;
+    border: none;
+    color: #fff;
+    padding: 11px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 10px;
+}
